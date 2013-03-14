@@ -1,4 +1,4 @@
-1- select book_no as kitap_id , book.name as kitap_adi from "book" inner join 
+1-select book_no as kitap_id , book.name as kitap_adi from "book" inner join 
 "publisher" on "publisher"."publisher_no" = "book"."publisher_no" where (publisher.name = 'pusula yayıncılık') 
 order by year;
 
@@ -6,4 +6,55 @@ order by year;
 from "book" inner join "publisher" on "publisher"."publisher_no" = "book"."publisher_no" 
 order by publisher.name, year;
 
-3-
+3-select publisher.name as publisher, count(*) as book_count from "book" inner join 
+"publisher" on "publisher"."publisher_no" = "book"."publisher_no" group by publisher.name;
+
+4-select publisher.name as publisher, count(*) as book_count from "book" inner join 
+"publisher" on "publisher"."publisher_no" = "book"."publisher_no" where(book.year between 1900 and 2002) 
+group by publisher.name having count(*) < 10;
+
+5-select name from book order by name desc limit 10;
+
+6-select publisher.name as publisher from "book" inner join "publisher" on 
+"publisher"."publisher_no" = "book"."publisher_no" where((book.year between 1945 and  1950)) 
+GROUP by publisher.name;
+
+7-select publisher.name, count(*) as book_count from "book" inner join 
+"publisher" on "publisher"."publisher_no" = "book"."publisher_no" where (year > 1967) 
+GROUP by publisher.name;
+
+8-select name, first_author from book where first_author = (select first_author from book 
+group by book.first_author order by count(*) desc limit 1);
+
+9-select name, price from book where price > (select avg(price) as price from book);
+
+10-select student.name from "subject" inner join "studies" on 
+  "studies"."subject_no" = "subject"."subject_no" inner join "student" on 
+	"student"."student_no" = "studies"."student_no" inner join "department" on 
+	"department"."department_no" = "student"."department_no" WHERE "subject"."stitle" = 'Veritabanı' 
+	and "department"."departmentname" = 'bilgisayar mühendisliği';
+
+11-select student.name as student, department.departmentname as department from 
+"subject" inner join "studies" on "studies"."subject_no" = "subject"."subject_no" 
+inner join "student" on "student"."student_no" = "studies"."student_no" inner join 
+"department" on "department"."department_no" = "student"."department_no" inner join 
+"buys" on "buys"."student_no" = "student"."student_no" inner join "book" on 
+"book"."book_no" = "buys"."book_no" where "subject"."stitle" = 'Bilgisayar Ağları' and 
+(subject.stitle = 'Bilgisayar Ağları' and subject.subject_no = book.subject_no and 
+department.departmentname != 'bilgisayar mühendisliği');
+
+12-select student.name from "student" inner join "studies" on 
+"studies"."student_no" = "student"."student_no" inner join "buys" on 
+"buys"."student_no" = "student"."student_no" inner join "book" on 
+"book"."book_no" = "buys"."book_no" 
+where (studies.student_no = buys.student_no);
+
+13-select book.name from book inner join subject on 
+subject.stitle = 'Veritabanı' order by book.book_no desc limit 1;
+
+14-select "student"."name", sum(price) as price from "book" inner join
+"buys" on "buys"."book_no" = "book"."book_no" inner join "student" on 
+"student"."student_no" = "buys"."student_no" group by student.name 
+having sum(price) > 50;
+
+15-select "book".* from "book" limit 10 offset 10;
