@@ -1,0 +1,9 @@
+1- select book_no as kitap_id , book.name as kitap_adi from "book" inner join 
+"publisher" on "publisher"."publisher_no" = "book"."publisher_no" where (publisher.name = 'pusula yayıncılık') 
+order by year;
+
+2-select publisher.name as publisher, book.name as book_name, book.year 
+from "book" inner join "publisher" on "publisher"."publisher_no" = "book"."publisher_no" 
+order by publisher.name, year;
+
+3-
