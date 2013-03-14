@@ -13,7 +13,7 @@ order by publisher.name, year;
 "publisher" on "publisher"."publisher_no" = "book"."publisher_no" where(book.year between 1900 and 2002) 
 group by publisher.name having count(*) < 10;
 
-5-select name from book order by name desc limit 10;
+5-select name from book order by price desc limit 10;
 
 6-select publisher.name as publisher from "book" inner join "publisher" on 
 "publisher"."publisher_no" = "book"."publisher_no" where((book.year between 1945 and  1950)) 
