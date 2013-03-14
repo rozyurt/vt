@@ -1,4 +1,4 @@
-insert into book (department_no, departmentname) 
+insert into department (department_no, departmentname) 
 values 
     (1, 'bilgisayar mühendisliği'),
     (2, 'makine mühendisliği')
